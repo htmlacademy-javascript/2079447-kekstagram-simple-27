@@ -47,24 +47,25 @@ const ADJECTIVES = [
 
 const GENERATE_PHOTOS = 25;
 
-const getRandomArbitrary = (min, max) => {
-  if (min < 0 || max < 0 || min >= max) {
+const getRandom = (a, b) => {
+  if (a < 0 || b < 0) {
     return NaN;
   }
-
-  return (Math.random() * (max - min) + min);
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
 };
 
-const getRandomArrayElement = (elements) => elements[getRandomArbitrary(0, elements.length - 1)];
+const getRandomArrayElement = (elements) => elements[getRandom(0, elements.length - 1)];
 
 const createPhotos = () => ({
-  id: getRandomArbitrary(1, 25),
-  url: 'photos/{}.jpg',
-  description: `${getRandomArrayElement(PHOTOVISUAL)} ${getRandomArrayElement(ADJECTIVES)} `,
-  likes: getRandomArbitrary(15, 200),
-  comments: getRandomArbitrary(0, 200),
+  id: getRandom(1, 25),
+  url: `photos/${getRandom(1, 25)}.jpg`,
+  description: `${getRandomArrayElement(ADJECTIVES)} ${getRandomArrayElement(PHOTOVISUAL)}`,
+  likes: getRandom(15, 200),
+  comments: getRandom(0, 200),
 });
 
-const similarPhotos = Array.from({ length: GENERATE_PHOTOS }, createPhotos);
-
-console.log(similarPhotos);
+const differentPhotos = Array.from({ length: GENERATE_PHOTOS }, createPhotos);
+console.log(differentPhotos);
