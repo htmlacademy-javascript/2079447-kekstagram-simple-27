@@ -68,4 +68,4 @@ const generatePhotoObject = () => ({
 });
 
 const differentPhotos = Array.from({ length: GENERATE_PHOTOS }, generatePhotoObject);
-console.log(differentPhotos);
+differentPhotos();
