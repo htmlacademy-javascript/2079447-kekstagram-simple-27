@@ -2,7 +2,6 @@ const checkStringLength = (string, maxLength) => string.length < maxLength;
 
 checkStringLength('Короткий комментарий', 20);
 
-let num = 0;
 const PHOTO_VISUAL = [
   'love',
   'people',
@@ -59,13 +58,21 @@ const getRandom = (a, b) => {
 
 const getRandomArrayElement = (elements) => elements[getRandom(0, elements.length - 1)];
 
-const generatePhotoObject = () => ({
-  id: num++,
-  url: `photos/${getRandom(1, 25)}.jpg`,
+const generatePhoto = (index) => ({
+  id: index,
+  url: `photos/${index}.jpg`,
   description: `${getRandomArrayElement(ADJECTIVES)} ${getRandomArrayElement(PHOTO_VISUAL)}`,
   likes: getRandom(15, 200),
   comments: getRandom(0, 200),
 });
 
-const differentPhotos = Array.from({ length: GENERATE_PHOTOS }, generatePhotoObject);
-differentPhotos();
+const generatePhotos = () => {
+  const photos = [];
+
+  for (let i = 0; i < GENERATE_PHOTOS; i++) {
+    const photo = generatePhoto(i + 1);
+    photos.push(photo);
+  }
+  return photos;
+};
+generatePhotos();
