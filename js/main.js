@@ -75,4 +75,4 @@ const generatePhotos = () => {
   }
   return photos;
 };
-console.log(generatePhotos);
+generatePhotos();
