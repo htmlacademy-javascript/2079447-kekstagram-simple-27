@@ -65,6 +65,8 @@ const generatePhotos = () => {
   }
   return photos;
 };
-// generatePhotos();
+generatePhotos();
 
-export { generatePhotos };
+export {
+  generatePhotos
+};
