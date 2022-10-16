@@ -1,7 +1,4 @@
-import {
-  getRandom,
-  getRandomArrayElement,
-} from './util.js';
+import { getRandom, getRandomArrayElement } from './util.js';
 
 const PHOTO_VISUAL = [
   'love',
@@ -67,6 +64,4 @@ const generatePhotos = () => {
 };
 generatePhotos();
 
-export {
-  generatePhotos
-};
+export { generatePhotos };
