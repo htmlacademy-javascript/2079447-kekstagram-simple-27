@@ -62,6 +62,5 @@ const generatePhotos = () => {
   }
   return photos;
 };
-generatePhotos();
 
 export { generatePhotos };
