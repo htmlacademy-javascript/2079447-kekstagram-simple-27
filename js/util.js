@@ -1,7 +1,3 @@
-const checkStringLength = (string, maxLength) => string.length < maxLength;
-
-checkStringLength('Короткий комментарий', 20);
-
 const getRandom = (a, b) => {
   if (a < 0 || b < 0) {
     return NaN;
@@ -16,4 +12,4 @@ const getRandomArrayElement = (elements) => elements[getRandom(0, elements.lengt
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { getRandom, getRandomArrayElement, checkStringLength, isEscapeKey };
+export { getRandom, getRandomArrayElement, isEscapeKey };
