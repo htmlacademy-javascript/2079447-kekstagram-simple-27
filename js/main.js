@@ -3,9 +3,12 @@ import { generatePhotos } from './data.js';
 import { setPhotoListeners } from './form.js';
 import { initValidation } from './validation.js';
 import { resetScale } from './scale.js';
+import { resetEffects } from './effects.js';
 
 const pictures = generatePhotos();
 renderPictures(pictures);
 setPhotoListeners();
 initValidation();
 resetScale();
+resetEffects();
+
