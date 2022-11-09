@@ -1,6 +1,5 @@
-//  Контейнер для изображений от других пользователей
 const picturesContainer = document.querySelector('.pictures');
-//Поиск шаблона по id picture, получение его содержимого из элемента с классом .picture
+
 const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
