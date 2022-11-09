@@ -1,66 +1,12 @@
-const previewImage = document.querySelector('.img-upload__preview');
+import { effectSliderData } from './effects-data.js';
+
+const previewImage = document.querySelector('.img-upload__preview img');
 const sliderElement = document.querySelector('.effect-level__slider');
 const valueElement = document.querySelector('.effect-level__value');
 const radioElements = document.querySelectorAll('.effects__radio');
+const effectLevel = document.querySelector('.effect-level');
 
-const effectSlider = [
-  {
-    name: 'effect-none',
-    style: 'none',
-    min: 0,
-    max: 0,
-    step: 0.1,
-    start: 0,
-    unit: ''
-  },
-  {
-    name: 'effect-chrome',
-    style: 'grayscale',
-    min: 0,
-    max: 1,
-    step: 0.1,
-    start: 1,
-    unit: ''
-  },
-  {
-    name: 'effect-sepia',
-    style: 'sepia',
-    min: 0,
-    max: 1,
-    step: 0.1,
-    start: 1,
-    unit: 'none'
-  },
-  {
-    name: 'effect-marvin',
-    style: 'invert',
-    min: 0,
-    max: 100,
-    step: 1,
-    start: 100,
-    unit: '%'
-  },
-  {
-    name: 'effect-phobos',
-    style: 'blur',
-    min: 0,
-    max: 3,
-    step: 0.1,
-    start: 3,
-    unit: 'px'
-  },
-  {
-    name: 'effect-heat',
-    style: 'brightness',
-    min: 1,
-    max: 3,
-    step: 0.1,
-    start: 3,
-    unit: ''
-  }
-];
-
-const defaultEffect = effectSlider[0];
+const defaultEffect = effectSliderData[0];
 let chosenEffect = defaultEffect;
 
 const isDefault = () => chosenEffect === defaultEffect;
@@ -83,22 +29,28 @@ const updateSlider = () => {
 };
 
 
-const currentEffect = (evt) => {
+const onEffectChage = (evt) => {
+
   if (!evt.target.id) {
     return;
   }
-  const currentEffectData = effectSlider.find((item) => item.name === evt.target.id);
-  chosenEffect = currentEffectData;
+
+  const onEffectChageData = effectSliderData.find((item) => item.name === evt.target.id);
+  chosenEffect = onEffectChageData;
   updateSlider();
 };
 
 const onSliderUpdate = () => {
+  effectLevel.classList.add('hidden');
   previewImage.style.filter = 'none';
   previewImage.className = '';
   valueElement.value = '';
+
   if (isDefault()) {
     return;
   }
+  effectLevel.classList.remove('hidden');
+
   const sliderValue = sliderElement.noUiSlider.get();
   previewImage.style.filter = `${chosenEffect.style}(${sliderValue}${chosenEffect.unit})`;
   previewImage.classList.add(`effects__preview--${chosenEffect.name}`);
@@ -111,19 +63,26 @@ const resetEffects = () => {
   updateSlider();
 };
 
-noUiSlider.create(sliderElement, {
-  range: {
-    min: defaultEffect.min,
-    max: defaultEffect.max,
-  },
-  start: defaultEffect.start,
-  step: defaultEffect.step,
-  connect: 'lower',
-});
+const createSlider = () => {
+  effectLevel.classList.add('hidden');
+  noUiSlider.create(sliderElement, {
+    range: {
+      min: defaultEffect.min,
+      max: defaultEffect.max,
+    },
+    start: defaultEffect.max,
+    step: defaultEffect.step,
+    connect: 'lower',
+  });
+};
 
-radioElements.forEach((item) => {
-  item.addEventListener('change', currentEffect);
-});
-sliderElement.noUiSlider.on('update', onSliderUpdate);
+const initSlider = () => {
+  createSlider();
+  radioElements.forEach((item) => {
+    item.addEventListener('change', onEffectChage);
+  });
 
-export { resetEffects };
+  sliderElement.noUiSlider.on('update', onSliderUpdate);
+};
+
+export { initSlider, resetEffects };

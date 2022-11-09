@@ -1,4 +1,6 @@
 import { isEscapeKey } from './util.js';
+import { resetScale } from './scale.js';
+import { resetEffects } from './effects.js';
 
 const uploadFile = document.querySelector('#upload-file');
 const uploadCancel = document.querySelector('#upload-cancel');
@@ -28,6 +30,8 @@ function closeForm() {
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
   clearForm();
+  resetScale();
+  resetEffects();
 }
 
 const setPhotoListeners = () => {
