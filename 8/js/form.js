@@ -43,4 +43,4 @@ const setPhotoListeners = () => {
   uploadCancel.addEventListener('click', onCloseButtonClick);
 };
 
-export { setPhotoListeners };
+export { setPhotoListeners, closeForm };
