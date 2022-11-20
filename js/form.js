@@ -5,6 +5,7 @@ import { resetEffects } from './effects.js';
 const uploadFile = document.querySelector('#upload-file');
 const uploadCancel = document.querySelector('#upload-cancel');
 const imgUploadOverlay = document.querySelector('.img-upload__overlay');
+const uploadForm = document.querySelector('.img-upload__form');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -32,6 +33,7 @@ function closeForm() {
   clearForm();
   resetScale();
   resetEffects();
+  uploadForm.reset();
 }
 
 const setPhotoListeners = () => {
